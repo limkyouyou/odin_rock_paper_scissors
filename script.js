@@ -1,36 +1,60 @@
 // game start
 
 // create an array hands variable ['rock', 'paper', 'scissors']
+const hands = ['rock', 'paper', 'scissors'];
 // create an array round variable ['1st', '2nd', '3rd', '4th', '5th']
 
 // create rock variable and assign false
+let rock;
 // create paper variable and assign false
+let paper;
 // create scissors variable and assign false
+let scissors;
 
 // create roundCount variable and assign 0
+let roundCount = 0;
 // create userPoint variable and assign 0
 // create machinePoint variable and assign 0
 
 // create an empty winningHand variable
 // create an empty roundWinner variable
+// create an empty play variable
+// create an empty prompt variable
+let promptValue;
+// create an empty userHand variable
+let userHand;
 
 // create whichHand function with parameter
 // if parameter is 0, assign rock true
 // if parameter is 1, assign paper true
 // if parameter is 2, assign scissors true
+function whichHand(hand) {
+  if (hand === 0) {
+    rock = true;
+  } else if (hand === 1) {
+    paper = true;
+  } else {
+    scissors = true;
+  }
+}
 
-// prompt message 'Do you want to play rock, paper, scissor with the machine?'.
-
+// confirm message 'Do you want to play rock, paper, scissors with the machine?'
 // the user click cancel, game closes
-
-// the user click okay
-
-// prompt user for input, 'Type-in rock, paper, or scissors then click okay.'
+// if okay, prompt prompt user for input, 'Type-in rock, paper, or scissors then click okay.' and assign to play variable
+if (confirm('Do you want to play rock, paper, scissors with the machine?')) {
+  promptValue = prompt('Type-in rock, paper, or scissors then click okay.');
+}
 
 // the user input and click okay
 // add 1 to roundCount
+if (promptValue === true) {
+  roundCount += 1
+}
 // user's input is converted to lower case then translated into number according to hands variable then assign to new variable userHand
+userHand = hands.indexOf(promptValue.toLowerCase());
+
 // run whichHand with userHand as parameter
+whichHand(userHand)
 
 // create machineHand and assgin it to randomly pick one out of 0, 1, or 2
 // run whichHand with machineHand as parameter
