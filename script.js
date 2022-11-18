@@ -3,6 +3,7 @@
 // create an array hands variable ['rock', 'paper', 'scissors']
 const hands = ['rock', 'paper', 'scissors'];
 // create an array round variable ['1st', '2nd', '3rd', '4th', '5th']
+const round = ['1st', '2nd', '3rd', '4th', '5th'];
 
 // create rock variable and assign false
 let rock;
@@ -42,18 +43,61 @@ function whichHand(hand) {
   }
 }
 
+// create battle function
+// add 1 to roundCount
+// if rock is true and paper is true then assign 1 to winningHand
+// if rock is true and scissors is true then assign 0 to winningHand
+// if paper is true and scissors is true then assign 2 to winningHand
+// else assign 3 to winningHand
+function battle() {
+  roundCount += 1;
+  if (rock === true && paper === true) {
+    winningHand = 1;
+  } else if (rock === true && scissors === true) {
+    winningHand = 0;
+  } else if (paper === true && scissors === true) {
+    winningHand = 2;
+  } else {
+    winningHand = 3;
+  }
+}
+
+// create endRoundMessage
+// if winningHand value equals to 3 'You: $hands[userHand] \\ The machine: $hands[machineHand]', 'You draw the $round[roundCount - 1] round'
+// , 'Score - You: $userPoint, The machine: $machinePoint', 'Click okay to move on to the next round'
+// else 'You: $hands[userHand] \\ The machine: $hands[machineHand]', '$roundWinner won the $round[roundCount - 1] round'
+// , 'Score - You: $userPoint, The machine: $machinePoint', 'Click okay to move on to the next round'
+function endRoundMessage() {
+  if (winningHand === 3) {
+    confirm(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou draw the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
+  } else {
+    confirm(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\n${roundWinner} won the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
+  }
+}
+
+// create givePoint function
+// if winningHand value equals to userHand value, add 1 to userPoint, assing 'You' to roundWinner
+// if winningHand value equals to machineHand value, add 1 to machinePoint, assign 'The machine' to roundWinner
+function givePoint() {
+  if (winningHand === userHand) {
+    userPoint += 1;
+    roundWinner = 'You';
+  } else if (winningHand === machineHand) {
+    machinePoint += 1;
+    roundWinner = 'The machine';
+  }
+}
+
 // confirm message 'Do you want to play rock, paper, scissors with the machine?'
+let confirmation = confirm('Do you want to play rock, paper, scissors with the machine?')
+
 // the user click cancel, game closes
 // if okay, prompt prompt user for input, 'Type-in rock, paper, or scissors then click okay.' and assign to play variable
-if (confirm('Do you want to play rock, paper, scissors with the machine?')) {
-  promptValue = prompt('Type-in rock, paper, or scissors then click okay.');
+if (confirmation) {
+  promptValue = prompt('Type-in rock, paper, or scissors then click OK.');
 }
 
 // the user input and click okay
-// add 1 to roundCount
-if (promptValue === true) {
-  roundCount += 1;
-}
 // user's input is converted to lower case then translated into number according to hands variable then assign to new variable userHand
 userHand = hands.indexOf(promptValue.toLowerCase());
 
@@ -66,35 +110,13 @@ let machineHand = Math.floor(Math.random()*3);
 whichHand(machineHand);
 
 // compare the choice between the user and the computer
-// create battle function
-// if rock is true and paper is true then assign 1 to winningHand
-// if rock is true and scissors is true then assign 0 to winningHand
-// if paper is true and scissors is true then assign 2 to winningHand
-// else assign 3 to winningHand
-function battle() {
-  if (rock === true && paper === true) {
-    winningHand = 1;
-  } else if (rock === true && scissors === true) {
-    winningHand = 0;
-  } else if (paper === true && scissors === true) {
-    winningHand = 2;
-  } else {
-    winningHand = 3;
-  }
-}
-
-battle()
+battle();
 
 // give a point to the winner
-// if winningHand value equals to userHand value, add 1 to userPoint, assing 'You' to roundWinner
-// if winningHand value equals to machineHand value, add 1 to machinePoint, assign 'The machine' to roundWinner
-if (winningHand === userHand) {
-  userPoint += 1;
-  roundWinner = 'You';
-} else if (winningHand === machineHand) {
-  machinePoint += 1;
-  roundWinner = 'The machine';
-}
+givePoint();
+
+// prompt end of round message 
+endRoundMessage();
 
 console.log(rock)
 console.log(paper)
@@ -103,12 +125,6 @@ console.log(winningHand)
 console.log(userPoint)
 console.log(machinePoint)
 console.log(roundWinner)
-// prompt end of round message 
-// if winningHand value equals to 3 'You: $hands[userHand] \\ The machine: $hands[machineHand]', 'You draw the $round[roundCount - 1] round'
-// , 'Score - You: $userPoint, The machine: $machinePoint', 'Click okay to move on to the next round'
-// else 'You: $hands[userHand] \\ The machine: $hands[machineHand]', '$roundWinner won the $round[roundCount - 1] round'
-// , 'Score - You: $userPoint, The machine: $machinePoint', 'Click okay to move on to the next round'
-
 // the user click okay
 // if roundCount is < 5 then prompt input box again, repeat
 // else run endGameMessage function
