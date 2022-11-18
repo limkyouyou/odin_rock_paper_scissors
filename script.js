@@ -14,11 +14,14 @@ let scissors;
 // create roundCount variable and assign 0
 let roundCount = 0;
 // create userPoint variable and assign 0
+let userPoint = 0;
 // create machinePoint variable and assign 0
+let machinePoint = 0;
 
 // create an empty winningHand variable
 let winningHand;
 // create an empty roundWinner variable
+let roundWinner;
 // create an empty play variable
 // create an empty prompt variable
 let promptValue;
@@ -81,15 +84,25 @@ function battle() {
 }
 
 battle()
-console.log(rock)
-console.log(paper)
-console.log(scissors)
-console.log(winningHand)
 
 // give a point to the winner
 // if winningHand value equals to userHand value, add 1 to userPoint, assing 'You' to roundWinner
 // if winningHand value equals to machineHand value, add 1 to machinePoint, assign 'The machine' to roundWinner
+if (winningHand === userHand) {
+  userPoint += 1;
+  roundWinner = 'You';
+} else if (winningHand === machineHand) {
+  machinePoint += 1;
+  roundWinner = 'The machine';
+}
 
+console.log(rock)
+console.log(paper)
+console.log(scissors)
+console.log(winningHand)
+console.log(userPoint)
+console.log(machinePoint)
+console.log(roundWinner)
 // prompt end of round message 
 // if winningHand value equals to 3 'You: $hands[userHand] \\ The machine: $hands[machineHand]', 'You draw the $round[roundCount - 1] round'
 // , 'Score - You: $userPoint, The machine: $machinePoint', 'Click okay to move on to the next round'
