@@ -33,7 +33,7 @@ function whichHand(hand) {
     rock = true;
   } else if (hand === 1) {
     paper = true;
-  } else {
+  } else if (hand === 2) {
     scissors = true;
   }
 }
@@ -48,16 +48,18 @@ if (confirm('Do you want to play rock, paper, scissors with the machine?')) {
 // the user input and click okay
 // add 1 to roundCount
 if (promptValue === true) {
-  roundCount += 1
+  roundCount += 1;
 }
 // user's input is converted to lower case then translated into number according to hands variable then assign to new variable userHand
 userHand = hands.indexOf(promptValue.toLowerCase());
 
 // run whichHand with userHand as parameter
-whichHand(userHand)
+whichHand(userHand);
 
 // create machineHand and assgin it to randomly pick one out of 0, 1, or 2
+let machineHand = Math.floor(Math.random()*3);
 // run whichHand with machineHand as parameter
+whichHand(machineHand);
 
 // compare the choice between the user and the computer
 // create battle function
