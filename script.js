@@ -17,6 +17,7 @@ let roundCount = 0;
 // create machinePoint variable and assign 0
 
 // create an empty winningHand variable
+let winningHand;
 // create an empty roundWinner variable
 // create an empty play variable
 // create an empty prompt variable
@@ -67,6 +68,23 @@ whichHand(machineHand);
 // if rock is true and scissors is true then assign 0 to winningHand
 // if paper is true and scissors is true then assign 2 to winningHand
 // else assign 3 to winningHand
+function battle() {
+  if (rock === true && paper === true) {
+    winningHand = 1;
+  } else if (rock === true && scissors === true) {
+    winningHand = 0;
+  } else if (paper === true && scissors === true) {
+    winningHand = 2;
+  } else {
+    winningHand = 3;
+  }
+}
+
+battle()
+console.log(rock)
+console.log(paper)
+console.log(scissors)
+console.log(winningHand)
 
 // give a point to the winner
 // if winningHand value equals to userHand value, add 1 to userPoint, assing 'You' to roundWinner
