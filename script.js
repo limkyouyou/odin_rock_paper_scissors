@@ -127,11 +127,37 @@ for (let i = 0; i < 5; i++) {
 
   // the user click okay
   // if roundCount is < 5 then prompt input box again, repeat
+
   // else run endGameMessage function
+  // if userPoint value equals to 3 then run endGameMessage('You')
+  // if machinePoint value equals to 3 then run endGameMessage('The Machine')
+  if (userPoint === 3) {
+    endGameMessage('You');
+  } else if (machinePoint === 3) {
+    endGameMessage('The machine');
+  }
 }
 
-// create endGameMessage function with parameters (winner, userPoint, machinePoint) 
+// if roundCount value equals 5 and userPoint value is bigger than machinePoint then run endGameMessage('You')
+// if roundCount value equals 5 and machinePoint value is bigger than userPoint then run run endGameMessage('The machine')
+// if roundCount value equals 5 and machinePoint value equals to userPoint then run 'There is no winner for this game'
+// , 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
+if (roundCount === 5 && userPoint > machinePoint) {
+  endGameMessage('You');
+} else if (roundCount === 5 && userPoint < machinePoint) {
+  endGameMessage('The machine');
+} else if (roundCount === 5 && userPoint === machinePoint) {
+  endGameDrawMessage();
+}
+// create endGameMessage function with parameters (winner) 
 // and confirm message 'The winner of the game is $winner !', 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
+function endGameMessage(winner) {
+  confirm(`The winner of the game is ${winner}!\n\nThe final score is\nYou: ${userPoint}\nThe machine${machinePoint}\n\nDo you want to play again?`);
+}
+// create endGameDrawMessage function
+function endGameDrawMessage() {
+  confirm(`There is no winner for this game!\n\nThe final score is\nYou: ${userPoint}\nThe machine${machinePoint}\n\nDo you want to play again?`)
+}
 // if userPoint value equals to 3 then run endGameMessage('You', userPoint, machinePoint)
 // if machinePoint value equals to 3 then run endGameMessage('The Machine', userPoint, machinePoint)
 // if roundCount value equals 5 and userPoint value is bigger than machinePoint then run endGameMessage('You', userPoint, machinePoint)
