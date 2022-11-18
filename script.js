@@ -28,6 +28,8 @@ let roundWinner;
 let promptValue;
 // create an empty userHand variable
 let userHand;
+// create an empty machineHand variable
+let machineHand;
 
 // create whichHand function with parameter
 // if parameter is 0, assign rock true
@@ -91,46 +93,45 @@ function givePoint() {
 // confirm message 'Do you want to play rock, paper, scissors with the machine?'
 let confirmation = confirm('Do you want to play rock, paper, scissors with the machine?')
 
-// the user click cancel, game closes
-// if okay, prompt prompt user for input, 'Type-in rock, paper, or scissors then click okay.' and assign to play variable
-if (confirmation) {
-  promptValue = prompt('Type-in rock, paper, or scissors then click OK.');
+for (let i = 0; i < 5; i++) {
+  // assign rock, paper, scissors variables to initial value
+  rock = false;
+  paper = false;
+  scissors = false;
+  // the user click cancel, game closes
+  // if okay, prompt prompt user for input, 'Type-in rock, paper, or scissors then click okay.' and assign to play variable
+  if (confirmation) {
+    promptValue = prompt('Type-in rock, paper, or scissors then click OK.');
+  }
+
+  // the user input and click okay
+  // user's input is converted to lower case then translated into number according to hands variable then assign to new variable userHand
+  userHand = hands.indexOf(promptValue.toLowerCase());
+
+  // run whichHand with userHand as parameter
+  whichHand(userHand);
+
+  // create machineHand and assgin it to randomly pick one out of 0, 1, or 2
+  machineHand = Math.floor(Math.random()*3);
+  // run whichHand with machineHand as parameter
+  whichHand(machineHand);
+
+  // compare the choice between the user and the computer
+  battle();
+
+  // give a point to the winner
+  givePoint();
+
+  // prompt end of round message 
+  endRoundMessage();
+
+  // the user click okay
+  // if roundCount is < 5 then prompt input box again, repeat
+  // else run endGameMessage function
 }
 
-// the user input and click okay
-// user's input is converted to lower case then translated into number according to hands variable then assign to new variable userHand
-userHand = hands.indexOf(promptValue.toLowerCase());
-
-// run whichHand with userHand as parameter
-whichHand(userHand);
-
-// create machineHand and assgin it to randomly pick one out of 0, 1, or 2
-let machineHand = Math.floor(Math.random()*3);
-// run whichHand with machineHand as parameter
-whichHand(machineHand);
-
-// compare the choice between the user and the computer
-battle();
-
-// give a point to the winner
-givePoint();
-
-// prompt end of round message 
-endRoundMessage();
-
-console.log(rock)
-console.log(paper)
-console.log(scissors)
-console.log(winningHand)
-console.log(userPoint)
-console.log(machinePoint)
-console.log(roundWinner)
-// the user click okay
-// if roundCount is < 5 then prompt input box again, repeat
-// else run endGameMessage function
-
 // create endGameMessage function with parameters (winner, userPoint, machinePoint) 
-// and assign 'The winner of the game is $winner !', 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?' 
+// and confirm message 'The winner of the game is $winner !', 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
 // if userPoint value equals to 3 then run endGameMessage('You', userPoint, machinePoint)
 // if machinePoint value equals to 3 then run endGameMessage('The Machine', userPoint, machinePoint)
 // if roundCount value equals 5 and userPoint value is bigger than machinePoint then run endGameMessage('You', userPoint, machinePoint)
