@@ -1,23 +1,70 @@
-// game start, prompt message 'Do you want to play rock, paper, scissors with the machine?'.
+// game start
+
+// create an array hands variable ['rock', 'paper', 'scissors']
+// create an array round variable ['1st', '2nd', '3rd', '4th', '5th']
+
+// create rock variable and assign false
+// create paper variable and assign false
+// create scissors variable and assign false
+
+// create roundCount variable and assign 0
+// create userPoint variable and assign 0
+// create machinePoint variable and assign 0
+
+// create an empty winningHand variable
+// create an empty roundWinner variable
+
+// create whichHand function with parameter
+// if parameter is 0, assign rock true
+// if parameter is 1, assign paper true
+// if parameter is 2, assign scissors true
+
+// prompt message 'Do you want to play rock, paper, scissor with the machine?'.
 
 // the user click cancel, game closes
 
 // the user click okay
+
 // prompt user for input, 'Type-in rock, paper, or scissors then click okay.'
 
 // the user input and click okay
-// computer randomly pick one out of three options
+// add 1 to roundCount
+// user's input is converted to lower case then translated into number according to hands variable then assign to new variable userHand
+// run whichHand with userHand as parameter
 
-// compare the choice between the user and the computer, give a point to the winner
+// create machineHand and assgin it to randomly pick one out of 0, 1, or 2
+// run whichHand with machineHand as parameter
 
-// count round played
+// compare the choice between the user and the computer
+// create battle function
+// if rock is true and paper is true then assign 1 to winningHand
+// if rock is true and scissors is true then assign 0 to winningHand
+// if paper is true and scissors is true then assign 2 to winningHand
+// else assign 3 to winningHand
 
-// count round won for each player
+// give a point to the winner
+// if winningHand value equals to userHand value, add 1 to userPoint, assing 'You' to roundWinner
+// if winningHand value equals to machineHand value, add 1 to machinePoint, assign 'The machine' to roundWinner
 
-// prompt message result of the round, rounds played, and each player's score, the user press okay to move on to the next round
+// prompt end of round message 
+// if winningHand value equals to 3 'You: $hands[userHand] \\ The machine: $hands[machineHand]', 'You draw the $round[roundCount - 1] round'
+// , 'Score - You: $userPoint, The machine: $machinePoint', 'Click okay to move on to the next round'
+// else 'You: $hands[userHand] \\ The machine: $hands[machineHand]', '$roundWinner won the $round[roundCount - 1] round'
+// , 'Score - You: $userPoint, The machine: $machinePoint', 'Click okay to move on to the next round'
 
-// when a player wins three rounds first or at the end of five round, game ends
+// the user click okay
+// if roundCount is < 5 then prompt input box again, repeat
+// else run endGameMessage function
 
-// when game ends, prompt message 'The winner of the game is you/the machine!', 'Score is You: #, The machiine: #', 'Do you want to play again?' 
+// create endGameMessage function with parameters (winner, userPoint, machinePoint) 
+// and assign 'The winner of the game is $winner !', 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?' 
+// if userPoint value equals to 3 then run endGameMessage('You', userPoint, machinePoint)
+// if machinePoint value equals to 3 then run endGameMessage('The Machine', userPoint, machinePoint)
+// if roundCount value equals 5 and userPoint value is bigger than machinePoint then run endGameMessage('You', userPoint, machinePoint)
+// if roundCount value equals 5 and machinePoint value is bigger than userPoint then run run endGameMessage('The machine', userPoint, machinePoint)
+// if roundCount value equals 5 and machinePoint value equals to userPoint then run 'There is no winner for this game'
+// , 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
 
 // the user press okay to play again
+// all variables assign initial value
+// prompt input box
