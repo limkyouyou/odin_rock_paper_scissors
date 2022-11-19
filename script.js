@@ -1,16 +1,19 @@
 // game start
 
 // create an array hands variable ['rock', 'paper', 'scissors']
-const hands = ['rock', 'paper', 'scissors'];
+// add 'bazooka' to the array as cheat code
+const hands = ['rock', 'paper', 'scissors', 'bazooka'];
 // create an array round variable ['1st', '2nd', '3rd', '4th', '5th']
 const round = ['1st', '2nd', '3rd', '4th', '5th'];
 
-// create rock variable and assign false
+// create empty rock variable
 let rock;
-// create paper variable and assign false
+// create empty paper variable
 let paper;
-// create scissors variable and assign false
+// create empty scissors variable
 let scissors;
+// create empty bazooka variable
+let bazooka;
 
 // create roundCount variable and assign 0
 let roundCount = 0;
@@ -42,6 +45,8 @@ function whichHand(hand) {
     paper = true;
   } else if (hand === 2) {
     scissors = true;
+  } else if (hand === 3) {
+    bazooka = true;
   }
 }
 
@@ -50,7 +55,8 @@ function whichHand(hand) {
 // if rock is true and paper is true then assign 1 to winningHand
 // if rock is true and scissors is true then assign 0 to winningHand
 // if paper is true and scissors is true then assign 2 to winningHand
-// else assign 3 to winningHand
+// if bazooka is true then assign 3 to winningHand
+// else assign 4 to winningHand
 function battle() {
   roundCount += 1;
   if (rock === true && paper === true) {
@@ -59,18 +65,20 @@ function battle() {
     winningHand = 0;
   } else if (paper === true && scissors === true) {
     winningHand = 2;
-  } else {
+  } else if (bazooka === true) {
     winningHand = 3;
+  } else {
+    winningHand = 4;
   }
 }
 
 // create endRoundMessage
-// if winningHand value equals to 3 'You: $hands[userHand] \\ The machine: $hands[machineHand]', 'You draw the $round[roundCount - 1] round'
+// if winningHand value equals to 4 'You: $hands[userHand] \\ The machine: $hands[machineHand]', 'You draw the $round[roundCount - 1] round'
 // , 'Score - You: $userPoint, The machine: $machinePoint', 'Click okay to move on to the next round'
 // else 'You: $hands[userHand] \\ The machine: $hands[machineHand]', '$roundWinner won the $round[roundCount - 1] round'
 // , 'Score - You: $userPoint, The machine: $machinePoint', 'Click okay to move on to the next round'
 function endRoundMessage() {
-  if (winningHand === 3) {
+  if (winningHand === 4) {
     confirm(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou draw the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
   } else {
     confirm(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\n${roundWinner} won the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
@@ -99,6 +107,8 @@ for (i = 0; i < 5; i++) {
   rock = false;
   paper = false;
   scissors = false;
+  // assign bazooka variable to initial value
+  bazooka = false;
   // the user click cancel, game closes
   // if okay, prompt prompt user for input, 'Type-in rock, paper, or scissors then click okay.' and assign to play variable
   if (confirmation) {
