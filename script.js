@@ -26,9 +26,6 @@ let machinePoint = 0;
 let winningHand;
 // create an empty roundWinner variable
 let roundWinner;
-// create an empty play variable
-// create an empty prompt variable
-let promptValue;
 // create an empty userHand variable
 let userHand;
 // create an empty machineHand variable
@@ -72,29 +69,18 @@ function battle() {
   }
 }
 
-// create endRoundMessage
-// if winningHand value equals to 4 'You: $hands[userHand] \\ The machine: $hands[machineHand]', 'You draw the $round[roundCount - 1] round'
-// , 'Score - You: $userPoint, The machine: $machinePoint', 'Click okay to move on to the next round'
-// else 'You: $hands[userHand] \\ The machine: $hands[machineHand]', '$roundWinner won the $round[roundCount - 1] round'
-// , 'Score - You: $userPoint, The machine: $machinePoint', 'Click okay to move on to the next round'
-function endRoundMessage() {
-  if (winningHand === 4) {
-    confirm(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou draw the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
-  } else {
-    confirm(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\n${roundWinner} won the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
-  }
-}
-
 // create givePoint function
-// if winningHand value equals to userHand value, add 1 to userPoint, assing 'You' to roundWinner
-// if winningHand value equals to machineHand value, add 1 to machinePoint, assign 'The machine' to roundWinner
+// if winningHand value equals to userHand value, add 1 to userPoint, alert end of round message
+// if winningHand value equals to machineHand value, add 1 to machinePoint, alert end of round message
 function givePoint() {
   if (winningHand === userHand) {
     userPoint += 1;
-    roundWinner = 'You';
+    alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou won the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
   } else if (winningHand === machineHand) {
     machinePoint += 1;
-    roundWinner = 'The machine';
+    alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nThe machine won the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
+  } else if (winningHand === 4) {
+    alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou draw the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
   }
 }
 
@@ -106,51 +92,60 @@ if (confirmation) {
   game()
 }
 
+// create roundInit function
+function roundInit() {
+  // assign rock, paper, scissors variables to initial value
+  rock = false;
+  paper = false;
+  scissors = false;
+  // assign bazooka variable to initial value
+  bazooka = false;
+}
+
 // create game function
 function game() {
   // create i vairable for loop
   let i = 0;
+
   // assign roundCount, userPoint, machinePoint to initial value
   roundCount = 0;
   userPoint = 0;
   machinePoint = 0;
   for (i = 0; i < 5; i++) {
-    // assign rock, paper, scissors variables to initial value
-    rock = false;
-    paper = false;
-    scissors = false;
-    // assign bazooka variable to initial value
-    bazooka = false;
-
+    
+    // run roundInit() to set hand variable to initial value
+    roundInit();
     // prompt user for input, 'Type-in rock, paper, or scissors then click okay.' and assign to play variable
-    promptValue = prompt('Type-in rock, paper, or scissors then click OK.');
+    let promptValue = prompt('Type-in rock, paper, or scissors then click OK.');
 
-    // the user input and click okay
-    // user's input is converted to lower case then translated into number according to hands variable then assign to new variable userHand
-    userHand = hands.indexOf(promptValue.toLowerCase());
-
-    // run whichHand with userHand as parameter
-    whichHand(userHand);
-
-    // create machineHand and assgin it to randomly pick one out of 0, 1, or 2
-    machineHand = Math.floor(Math.random()*3);
-    // run whichHand with machineHand as parameter
-    whichHand(machineHand);
-
-    // compare the choice between the user and the computer
-    battle();
-
-    // give a point to the winner
-    givePoint();
-
-    // prompt end of round message 
-    endRoundMessage();
-
-    // the user click okay
-    // if roundCount is < 5 then prompt input box again, repeat
-
-    // run endGame function
-    endgame()
+    if (promptValue === null) { // if user click cancel alert and exit game 
+      alert("Exiting the game")
+      i = 5;
+    } else { // if input and click okay then contiue game
+      //  user's input is converted to lower case then translated into number according to hands variable then assign to new variable userHand
+      userHand = hands.indexOf(promptValue.toLowerCase());
+      // run whichHand with userHand as parameter
+      whichHand(userHand);
+      
+      // create machineHand and assgin it to randomly pick one out of 0, 1, or 2
+      machineHand = Math.floor(Math.random()*3);
+      // run whichHand with machineHand as parameter
+      whichHand(machineHand);
+      
+      // compare the choice between the user and the computer
+      battle();
+      
+      // give a point to the winner and alert end of round message
+      givePoint();
+      
+      // the user click okay
+      // if roundCount is < 5 then prompt input box again, repeat
+      
+      // run endGame function
+      endgame()
+    }
+    // assing promptValue to null so that forgets previous value
+    promptValue = null;
   }
 }
 
