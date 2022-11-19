@@ -101,16 +101,19 @@ function givePoint() {
 // confirm message 'Do you want to play rock, paper, scissors with the machine?'
 // the user click cancel, game closes
 let confirmation = confirm('Do you want to play rock, paper, scissors with the machine?')
-// if onfirmation is true then run game
+// if onfirmation is true then run game()
 if (confirmation) {
   game()
 }
 
+// create game function
 function game() {
   // create i vairable for loop
   let i = 0;
-  // set confirmation value to false so it can be used again at the end of each game
-  confirmation = false;
+  // assign roundCount, userPoint, machinePoint to initial value
+  roundCount = 0;
+  userPoint = 0;
+  machinePoint = 0;
   for (i = 0; i < 5; i++) {
     // assign rock, paper, scissors variables to initial value
     rock = false;
@@ -146,44 +149,48 @@ function game() {
     // the user click okay
     // if roundCount is < 5 then prompt input box again, repeat
 
-    // else run endGameMessage function
-    // if userPoint value equals to 3 then run endGameMessage('You')
-    // if machinePoint value equals to 3 then run endGameMessage('The Machine')
-    if (userPoint === 3 && roundCount !== 5) {
-      endGameMessage('You');
-      // assign 5 to i so the loop can stop
-      i = 5;
-    } else if (machinePoint === 3 && roundCount !== 5) {
-      endGameMessage('The machine');
-      // assign 5 to i so the loop can stop
-      i = 5;
-    }
+    // run endGame function
+    endgame()
   }
 }
-// if roundCount value equals 5 and userPoint value is bigger than machinePoint then run endGameMessage('You')
-// if roundCount value equals 5 and machinePoint value is bigger than userPoint then run run endGameMessage('The machine')
-// if roundCount value equals 5 and machinePoint value equals to userPoint then run 'There is no winner for this game'
-// , 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
-if (roundCount === 5 && userPoint > machinePoint) {
-  endGameMessage('You');
-} else if (roundCount === 5 && userPoint < machinePoint) {
-  endGameMessage('The machine');
-} else if (roundCount === 5 && userPoint === machinePoint) {
-  endGameDrawMessage();
+
+// create end of game message function
+function endgame() {
+  // if roundCount value equals 5 and userPoint value is bigger than machinePoint then run endGameMessage('You')
+  // if roundCount value equals 5 and machinePoint value is bigger than userPoint then run run endGameMessage('The machine')
+  // if roundCount value equals 5 and machinePoint value equals to userPoint then run 'There is no winner for this game'
+  // , 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
+  // if userPoint value equals to 3 then run endGameMessage('You')
+  // if machinePoint value equals to 3 then run endGameMessage('The Machine')
+  if (roundCount === 5 && userPoint > machinePoint) {
+    endGameMessage('You');
+  } else if (roundCount === 5 && userPoint < machinePoint) {
+    endGameMessage('The machine');
+  } else if (roundCount === 5 && userPoint === machinePoint) {
+    endGameDrawMessage();
+  } else if (userPoint === 3 && roundCount !== 5) {
+    endGameMessage('You');
+    // assign 5 to i so the loop can stop
+    i = 5;
+  } else if (machinePoint === 3 && roundCount !== 5) {
+    endGameMessage('The machine');
+    // assign 5 to i so the loop can stop
+    i = 5;
+  }
 }
 // create endGameMessage function with parameters (winner) 
 // and confirm message 'The winner of the game is $winner !', 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
 function endGameMessage(winner) {
   confirmation = confirm(`The winner of the game is ${winner}!\n\nThe final score is\nYou: ${userPoint}\nThe machine${machinePoint}\n\nDo you want to play again?`);
   if (confirmation) {
-    game()
+    game() // if confirmation is true then run game()
   }
 }
 // create endGameDrawMessage function
 function endGameDrawMessage() {
   confirmation = confirm(`There is no winner for this game!\n\nThe final score is\nYou: ${userPoint}\nThe machine${machinePoint}\n\nDo you want to play again?`)
   if (confirmation) {
-    game()
+    game() // if confirmation is true then run game()
   }
 }
 // if userPoint value equals to 3 then run endGameMessage('You', userPoint, machinePoint)
