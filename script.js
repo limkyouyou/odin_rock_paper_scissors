@@ -99,60 +99,67 @@ function givePoint() {
 }
 
 // confirm message 'Do you want to play rock, paper, scissors with the machine?'
+// the user click cancel, game closes
 let confirmation = confirm('Do you want to play rock, paper, scissors with the machine?')
-// create global i vairable for loop
-let i;
-for (i = 0; i < 5; i++) {
-  // assign rock, paper, scissors variables to initial value
-  rock = false;
-  paper = false;
-  scissors = false;
-  // assign bazooka variable to initial value
-  bazooka = false;
-  // the user click cancel, game closes
-  // if okay, prompt prompt user for input, 'Type-in rock, paper, or scissors then click okay.' and assign to play variable
-  if (confirmation) {
-    promptValue = prompt('Type-in rock, paper, or scissors then click OK.');
-  }
-
-  // the user input and click okay
-  // user's input is converted to lower case then translated into number according to hands variable then assign to new variable userHand
-  userHand = hands.indexOf(promptValue.toLowerCase());
-
-  // run whichHand with userHand as parameter
-  whichHand(userHand);
-
-  // create machineHand and assgin it to randomly pick one out of 0, 1, or 2
-  machineHand = Math.floor(Math.random()*3);
-  // run whichHand with machineHand as parameter
-  whichHand(machineHand);
-
-  // compare the choice between the user and the computer
-  battle();
-
-  // give a point to the winner
-  givePoint();
-
-  // prompt end of round message 
-  endRoundMessage();
-
-  // the user click okay
-  // if roundCount is < 5 then prompt input box again, repeat
-
-  // else run endGameMessage function
-  // if userPoint value equals to 3 then run endGameMessage('You')
-  // if machinePoint value equals to 3 then run endGameMessage('The Machine')
-  if (userPoint === 3 && roundCount !== 5) {
-    endGameMessage('You');
-    // assign 5 to i so the loop can stop
-    i = 5;
-  } else if (machinePoint === 3 && roundCount !== 5) {
-    endGameMessage('The machine');
-    // assign 5 to i so the loop can stop
-    i = 5;
-  }
+// if onfirmation is true then run game
+if (confirmation) {
+  game()
 }
 
+function game() {
+  // create i vairable for loop
+  let i = 0;
+  // set confirmation value to false so it can be used again at the end of each game
+  confirmation = false;
+  for (i = 0; i < 5; i++) {
+    // assign rock, paper, scissors variables to initial value
+    rock = false;
+    paper = false;
+    scissors = false;
+    // assign bazooka variable to initial value
+    bazooka = false;
+
+    // prompt user for input, 'Type-in rock, paper, or scissors then click okay.' and assign to play variable
+    promptValue = prompt('Type-in rock, paper, or scissors then click OK.');
+
+    // the user input and click okay
+    // user's input is converted to lower case then translated into number according to hands variable then assign to new variable userHand
+    userHand = hands.indexOf(promptValue.toLowerCase());
+
+    // run whichHand with userHand as parameter
+    whichHand(userHand);
+
+    // create machineHand and assgin it to randomly pick one out of 0, 1, or 2
+    machineHand = Math.floor(Math.random()*3);
+    // run whichHand with machineHand as parameter
+    whichHand(machineHand);
+
+    // compare the choice between the user and the computer
+    battle();
+
+    // give a point to the winner
+    givePoint();
+
+    // prompt end of round message 
+    endRoundMessage();
+
+    // the user click okay
+    // if roundCount is < 5 then prompt input box again, repeat
+
+    // else run endGameMessage function
+    // if userPoint value equals to 3 then run endGameMessage('You')
+    // if machinePoint value equals to 3 then run endGameMessage('The Machine')
+    if (userPoint === 3 && roundCount !== 5) {
+      endGameMessage('You');
+      // assign 5 to i so the loop can stop
+      i = 5;
+    } else if (machinePoint === 3 && roundCount !== 5) {
+      endGameMessage('The machine');
+      // assign 5 to i so the loop can stop
+      i = 5;
+    }
+  }
+}
 // if roundCount value equals 5 and userPoint value is bigger than machinePoint then run endGameMessage('You')
 // if roundCount value equals 5 and machinePoint value is bigger than userPoint then run run endGameMessage('The machine')
 // if roundCount value equals 5 and machinePoint value equals to userPoint then run 'There is no winner for this game'
@@ -167,11 +174,17 @@ if (roundCount === 5 && userPoint > machinePoint) {
 // create endGameMessage function with parameters (winner) 
 // and confirm message 'The winner of the game is $winner !', 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
 function endGameMessage(winner) {
-  confirm(`The winner of the game is ${winner}!\n\nThe final score is\nYou: ${userPoint}\nThe machine${machinePoint}\n\nDo you want to play again?`);
+  confirmation = confirm(`The winner of the game is ${winner}!\n\nThe final score is\nYou: ${userPoint}\nThe machine${machinePoint}\n\nDo you want to play again?`);
+  if (confirmation) {
+    game()
+  }
 }
 // create endGameDrawMessage function
 function endGameDrawMessage() {
-  confirm(`There is no winner for this game!\n\nThe final score is\nYou: ${userPoint}\nThe machine${machinePoint}\n\nDo you want to play again?`)
+  confirmation = confirm(`There is no winner for this game!\n\nThe final score is\nYou: ${userPoint}\nThe machine${machinePoint}\n\nDo you want to play again?`)
+  if (confirmation) {
+    game()
+  }
 }
 // if userPoint value equals to 3 then run endGameMessage('You', userPoint, machinePoint)
 // if machinePoint value equals to 3 then run endGameMessage('The Machine', userPoint, machinePoint)
