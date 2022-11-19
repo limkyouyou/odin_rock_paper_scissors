@@ -92,6 +92,7 @@ function givePoint() {
 
 // confirm message 'Do you want to play rock, paper, scissors with the machine?'
 let confirmation = confirm('Do you want to play rock, paper, scissors with the machine?')
+// create global i vairable for loop
 let i;
 for (i = 0; i < 5; i++) {
   // assign rock, paper, scissors variables to initial value
@@ -133,8 +134,12 @@ for (i = 0; i < 5; i++) {
   // if machinePoint value equals to 3 then run endGameMessage('The Machine')
   if (userPoint === 3 && roundCount !== 5) {
     endGameMessage('You');
+    // assign 5 to i so the loop can stop
+    i = 5;
   } else if (machinePoint === 3 && roundCount !== 5) {
     endGameMessage('The machine');
+    // assign 5 to i so the loop can stop
+    i = 5;
   }
 }
 
@@ -153,12 +158,10 @@ if (roundCount === 5 && userPoint > machinePoint) {
 // and confirm message 'The winner of the game is $winner !', 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
 function endGameMessage(winner) {
   confirm(`The winner of the game is ${winner}!\n\nThe final score is\nYou: ${userPoint}\nThe machine${machinePoint}\n\nDo you want to play again?`);
-  i = 5;
 }
 // create endGameDrawMessage function
 function endGameDrawMessage() {
   confirm(`There is no winner for this game!\n\nThe final score is\nYou: ${userPoint}\nThe machine${machinePoint}\n\nDo you want to play again?`)
-  i = 5;
 }
 // if userPoint value equals to 3 then run endGameMessage('You', userPoint, machinePoint)
 // if machinePoint value equals to 3 then run endGameMessage('The Machine', userPoint, machinePoint)
