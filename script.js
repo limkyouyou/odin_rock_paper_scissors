@@ -102,6 +102,8 @@ function roundInit() {
   bazooka = false;
 }
 
+
+
 // create game function
 function game() {
   // create i vairable for loop
@@ -121,7 +123,8 @@ function game() {
     if (promptValue === null) { // if user click cancel alert and exit game 
       alert("Exiting the game")
       i = 5;
-    } else { // if input and click okay then contiue game
+    } // if user input matches one of the hands items
+      else if (promptValue.toLowerCase() === hands[0] || promptValue.toLowerCase() === hands[1] || promptValue.toLowerCase() === hands[2] || promptValue.toLowerCase() === hands[3]){
       //  user's input is converted to lower case then translated into number according to hands variable then assign to new variable userHand
       userHand = hands.indexOf(promptValue.toLowerCase());
       // run whichHand with userHand as parameter
@@ -143,6 +146,9 @@ function game() {
       
       // run endGame function
       endgame()
+    } else { // if the input does not match null or any hands items, alert messgae and subtract 1 from i so the this loop is repeated
+      alert("That's not a hand! Please type-in again");
+      i -= 1;
     }
     // assing promptValue to null so that forgets previous value
     promptValue = null;
@@ -176,14 +182,14 @@ function endgame() {
 // create endGameMessage function with parameters (winner) 
 // and confirm message 'The winner of the game is $winner !', 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
 function endGameMessage(winner) {
-  confirmation = confirm(`The winner of the game is ${winner}!\n\nThe final score is\nYou: ${userPoint}\nThe machine${machinePoint}\n\nDo you want to play again?`);
+  confirmation = confirm(`The winner of the game is ${winner}!\n\nThe final score is\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nDo you want to play again?`);
   if (confirmation) {
     game() // if confirmation is true then run game()
   }
 }
 // create endGameDrawMessage function
 function endGameDrawMessage() {
-  confirmation = confirm(`There is no winner for this game!\n\nThe final score is\nYou: ${userPoint}\nThe machine${machinePoint}\n\nDo you want to play again?`)
+  confirmation = confirm(`There is no winner for this game!\n\nThe final score is\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nDo you want to play again?`)
   if (confirmation) {
     game() // if confirmation is true then run game()
   }
