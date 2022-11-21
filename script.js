@@ -1,5 +1,17 @@
 // game start
 
+// create an array hands variable ['rock', 'paper', 'scissors']
+// add 'bazooka' to the array as cheat code
+const hands = ['rock', 'paper', 'scissors', 'bazooka'];
+// create an array round variable ['1st', '2nd', '3rd', '4th', '5th']
+const round = ['1st', '2nd', '3rd', '4th', '5th'];
+// create an empty userHand variable
+let userHand;
+// create an empty machineHand variable
+let machineHand;
+// create roundCount variable and assign 0
+let roundCount = 0;
+
 // create empty rock variable
 let rock;
 // create empty paper variable
@@ -39,21 +51,13 @@ function whichHand(hand) {
 
 // create game function
 function game() {
-  // create an array hands variable ['rock', 'paper', 'scissors']
-  // add 'bazooka' to the array as cheat code
-  const hands = ['rock', 'paper', 'scissors', 'bazooka'];
-  // create an array round variable ['1st', '2nd', '3rd', '4th', '5th']
-  const round = ['1st', '2nd', '3rd', '4th', '5th'];
   // create i vairable for loop here to that it can be modified
   let i = 0;
-  // create roundCount variable and assign 0
-  let roundCount = 0;
   // create an empty winningHand variable
   let winningHand;
-  // create an empty userHand variable
-  let userHand;
-  // create an empty machineHand variable
-  let machineHand;
+  // assign roundCount variable to initial value of 0
+  roundCount = 0;
+
   // assign userPoint variable to initial value of 0 so it resets everytime game() is executed
   userPoint = 0;
   // assign machinePoint variable to initial value of 0 so it resets everytime game() is executed
@@ -111,10 +115,10 @@ function game() {
       // if winningHand value equals to 4, no point is added and alert draw round message
       if (winningHand === userHand) {
         userPoint += 1;
-        alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou won the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
+        endRound();
       } else if (winningHand === machineHand) {
         machinePoint += 1;
-        alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nThe machine won the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
+        endRound();
       } else if (winningHand === 4) {
         alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou draw the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
       }
@@ -146,6 +150,11 @@ function game() {
     // assing promptValue to null so that forgets previous value
     promptValue = null;
   }
+}
+
+// create end of round function
+function endRound() {
+  alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou won the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
 }
 
 // create endGameMessage function with parameters (winner) 
