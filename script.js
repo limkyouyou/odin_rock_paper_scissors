@@ -15,13 +15,6 @@ let scissors;
 // create empty bazooka variable
 let bazooka;
 
-// create roundCount variable and assign 0
-let roundCount = 0;
-// create userPoint variable and assign 0
-let userPoint = 0;
-// create machinePoint variable and assign 0
-let machinePoint = 0;
-
 // create an empty winningHand variable
 let winningHand;
 // create an empty roundWinner variable
@@ -30,6 +23,10 @@ let roundWinner;
 let userHand;
 // create an empty machineHand variable
 let machineHand;
+
+let userPoint = 0;
+// create machinePoint variable and assign 0
+let machinePoint = 0;
 
 // create whichHand function with parameter
 // if parameter is 0, assign rock true
@@ -47,43 +44,6 @@ function whichHand(hand) {
   }
 }
 
-// create battle function
-// add 1 to roundCount
-// if rock is true and paper is true then assign 1 to winningHand
-// if rock is true and scissors is true then assign 0 to winningHand
-// if paper is true and scissors is true then assign 2 to winningHand
-// if bazooka is true then assign 3 to winningHand
-// else assign 4 to winningHand
-function battle() {
-  roundCount += 1;
-  if (rock === true && paper === true) {
-    winningHand = 1;
-  } else if (rock === true && scissors === true) {
-    winningHand = 0;
-  } else if (paper === true && scissors === true) {
-    winningHand = 2;
-  } else if (bazooka === true) {
-    winningHand = 3;
-  } else {
-    winningHand = 4;
-  }
-}
-
-// create givePoint function
-// if winningHand value equals to userHand value, add 1 to userPoint, alert end of round message
-// if winningHand value equals to machineHand value, add 1 to machinePoint, alert end of round message
-function givePoint() {
-  if (winningHand === userHand) {
-    userPoint += 1;
-    alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou won the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
-  } else if (winningHand === machineHand) {
-    machinePoint += 1;
-    alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nThe machine won the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
-  } else if (winningHand === 4) {
-    alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou draw the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
-  }
-}
-
 // confirm message 'Do you want to play rock, paper, scissors with the machine?'
 // the user click cancel, game closes
 let confirmation = confirm('Do you want to play rock, paper, scissors with the machine?')
@@ -92,31 +52,25 @@ if (confirmation) {
   game()
 }
 
-// create roundInit function
-function roundInit() {
-  // assign rock, paper, scissors variables to initial value
-  rock = false;
-  paper = false;
-  scissors = false;
-  // assign bazooka variable to initial value
-  bazooka = false;
-}
-
-
-
 // create game function
 function game() {
   // create i vairable for loop
   let i = 0;
-
-  // assign roundCount, userPoint, machinePoint to initial value
-  roundCount = 0;
+  // create roundCount variable and assign 0
+  let roundCount = 0;
+  // assign userPoint variable to initial value of 0
   userPoint = 0;
+  // assign machinePoint variable to initial value of 0
   machinePoint = 0;
+
   for (i = 0; i < 5; i++) {
-    
-    // run roundInit() to set hand variable to initial value
-    roundInit();
+    // assign rock, paper, scissors variables to initial value
+    rock = false;
+    paper = false;
+    scissors = false;
+    // assign bazooka variable to initial value
+    bazooka = false;
+
     // prompt user for input, 'Type-in rock, paper, or scissors then click okay.' and assign to play variable
     let promptValue = prompt('Type-in rock, paper, or scissors then click OK.');
 
@@ -136,10 +90,38 @@ function game() {
       whichHand(machineHand);
       
       // compare the choice between the user and the computer
-      battle();
+      // add 1 to roundCount
+      // if rock is true and paper is true then assign 1 to winningHand
+      // if rock is true and scissors is true then assign 0 to winningHand
+      // if paper is true and scissors is true then assign 2 to winningHand
+      // if bazooka is true then assign 3 to winningHand
+      // else assign 4 to winningHand
+      roundCount += 1;
+      if (rock === true && paper === true) {
+        winningHand = 1;
+      } else if (rock === true && scissors === true) {
+        winningHand = 0;
+      } else if (paper === true && scissors === true) {
+        winningHand = 2;
+      } else if (bazooka === true) {
+        winningHand = 3;
+      } else {
+        winningHand = 4;
+      }
       
       // give a point to the winner and alert end of round message
-      givePoint();
+      // create givePoint function
+      // if winningHand value equals to userHand value, add 1 to userPoint, alert end of round message
+      // if winningHand value equals to machineHand value, add 1 to machinePoint, alert end of round message
+      if (winningHand === userHand) {
+        userPoint += 1;
+        alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou won the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
+      } else if (winningHand === machineHand) {
+        machinePoint += 1;
+        alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nThe machine won the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
+      } else if (winningHand === 4) {
+        alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou draw the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
+      }
       
       // if roundCount is < 5 then prompt input box again, repeat
       // if roundCount value equals 5 and userPoint value is bigger than machinePoint then run endGameMessage('You')
