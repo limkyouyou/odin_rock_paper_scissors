@@ -15,18 +15,17 @@ let scissors;
 // create empty bazooka variable
 let bazooka;
 
-// create an empty winningHand variable
-let winningHand;
-// create an empty roundWinner variable
-let roundWinner;
-// create an empty userHand variable
-let userHand;
-// create an empty machineHand variable
-let machineHand;
-
 let userPoint = 0;
 // create machinePoint variable and assign 0
 let machinePoint = 0;
+
+// confirm message 'Do you want to play rock, paper, scissors with the machine?'
+// the user click cancel, game closes
+let confirmation = confirm('Do you want to play rock, paper, scissors with the machine?')
+// if confirmation is true then run game()
+if (confirmation) {
+  game()
+}
 
 // create whichHand function with parameter
 // if parameter is 0, assign rock true
@@ -44,20 +43,20 @@ function whichHand(hand) {
   }
 }
 
-// confirm message 'Do you want to play rock, paper, scissors with the machine?'
-// the user click cancel, game closes
-let confirmation = confirm('Do you want to play rock, paper, scissors with the machine?')
-// if onfirmation is true then run game()
-if (confirmation) {
-  game()
-}
-
 // create game function
 function game() {
   // create i vairable for loop
   let i = 0;
   // create roundCount variable and assign 0
   let roundCount = 0;
+  // create an empty winningHand variable
+  let winningHand;
+  // create an empty roundWinner variable
+  let roundWinner;
+  // create an empty userHand variable
+  let userHand;
+  // create an empty machineHand variable
+  let machineHand;
   // assign userPoint variable to initial value of 0
   userPoint = 0;
   // assign machinePoint variable to initial value of 0
