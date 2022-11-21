@@ -51,8 +51,6 @@ function game() {
   let roundCount = 0;
   // create an empty winningHand variable
   let winningHand;
-  // create an empty roundWinner variable
-  let roundWinner;
   // create an empty userHand variable
   let userHand;
   // create an empty machineHand variable
