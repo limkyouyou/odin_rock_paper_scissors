@@ -144,8 +144,21 @@ function game() {
       // the user click okay
       // if roundCount is < 5 then prompt input box again, repeat
       
-      // run endGame function
-      endgame()
+      if (roundCount === 5 && userPoint > machinePoint) {
+        endGameMessage('You');
+      } else if (roundCount === 5 && userPoint < machinePoint) {
+        endGameMessage('The machine');
+      } else if (roundCount === 5 && userPoint === machinePoint) {
+        endGameDrawMessage();
+      } else if (userPoint === 3 && roundCount !== 5) {
+        endGameMessage('You');
+        // assign 5 to i so the loop can stop
+        i = 5;
+      } else if (machinePoint === 3 && roundCount !== 5) {
+        endGameMessage('The machine');
+        // assign 5 to i so the loop can stop
+        i = 5;
+      }
     } else { // if the input does not match null or any hands items, alert messgae and subtract 1 from i so the this loop is repeated
       alert("That's not a hand! Please type-in again");
       i -= 1;
