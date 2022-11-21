@@ -1,11 +1,5 @@
 // game start
 
-// create an array hands variable ['rock', 'paper', 'scissors']
-// add 'bazooka' to the array as cheat code
-const hands = ['rock', 'paper', 'scissors', 'bazooka'];
-// create an array round variable ['1st', '2nd', '3rd', '4th', '5th']
-const round = ['1st', '2nd', '3rd', '4th', '5th'];
-
 // create empty rock variable
 let rock;
 // create empty paper variable
@@ -14,7 +8,7 @@ let paper;
 let scissors;
 // create empty bazooka variable
 let bazooka;
-
+// create userPoint variable and assign 0
 let userPoint = 0;
 // create machinePoint variable and assign 0
 let machinePoint = 0;
@@ -45,7 +39,12 @@ function whichHand(hand) {
 
 // create game function
 function game() {
-  // create i vairable for loop
+  // create an array hands variable ['rock', 'paper', 'scissors']
+  // add 'bazooka' to the array as cheat code
+  const hands = ['rock', 'paper', 'scissors', 'bazooka'];
+  // create an array round variable ['1st', '2nd', '3rd', '4th', '5th']
+  const round = ['1st', '2nd', '3rd', '4th', '5th'];
+  // create i vairable for loop here to that it can be modified
   let i = 0;
   // create roundCount variable and assign 0
   let roundCount = 0;
@@ -55,13 +54,13 @@ function game() {
   let userHand;
   // create an empty machineHand variable
   let machineHand;
-  // assign userPoint variable to initial value of 0
+  // assign userPoint variable to initial value of 0 so it resets everytime game() is executed
   userPoint = 0;
-  // assign machinePoint variable to initial value of 0
+  // assign machinePoint variable to initial value of 0 so it resets everytime game() is executed
   machinePoint = 0;
 
-  for (i = 0; i < 5; i++) {
-    // assign rock, paper, scissors variables to initial value
+  for (i = 0; i < 5; i++) { // run round 5 times
+    // assign rock, paper, scissors variables to initial value so it resets everytime round loop repeats
     rock = false;
     paper = false;
     scissors = false;
@@ -71,11 +70,11 @@ function game() {
     // prompt user for input, 'Type-in rock, paper, or scissors then click okay.' and assign to play variable
     let promptValue = prompt('Type-in rock, paper, or scissors then click OK.');
 
-    if (promptValue === null) { // if user click cancel alert and exit game 
+    if (promptValue === null) { // if user click cancel alert and assign i to 5 so all round loops skip to end and game exits 
       alert("Exiting the game")
       i = 5;
     } // if user input matches one of the hands items
-      else if (promptValue.toLowerCase() === hands[0] || promptValue.toLowerCase() === hands[1] || promptValue.toLowerCase() === hands[2] || promptValue.toLowerCase() === hands[3]){
+    else if (promptValue.toLowerCase() === hands[0] || promptValue.toLowerCase() === hands[1] || promptValue.toLowerCase() === hands[2] || promptValue.toLowerCase() === hands[3]){
       //  user's input is converted to lower case then translated into number according to hands variable then assign to new variable userHand
       userHand = hands.indexOf(promptValue.toLowerCase());
       // run whichHand with userHand as parameter
@@ -107,9 +106,9 @@ function game() {
       }
       
       // give a point to the winner and alert end of round message
-      // create givePoint function
       // if winningHand value equals to userHand value, add 1 to userPoint, alert end of round message
       // if winningHand value equals to machineHand value, add 1 to machinePoint, alert end of round message
+      // if winningHand value equals to 4, no point is added and alert draw round message
       if (winningHand === userHand) {
         userPoint += 1;
         alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou won the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
@@ -119,12 +118,10 @@ function game() {
       } else if (winningHand === 4) {
         alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou draw the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
       }
-      
-      // if roundCount is < 5 then prompt input box again, repeat
+
       // if roundCount value equals 5 and userPoint value is bigger than machinePoint then run endGameMessage('You')
-      // if roundCount value equals 5 and machinePoint value is bigger than userPoint then run run endGameMessage('The machine')
-      // if roundCount value equals 5 and machinePoint value equals to userPoint then run 'There is no winner for this game'
-      // , 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
+      // if roundCount value equals 5 and machinePoint value is bigger than userPoint then run endGameMessage('The machine')
+      // if roundCount value equals 5 and machinePoint value equals to userPoint then run endGameDrawMessage
       // if userPoint value equals to 3 then run endGameMessage('You')
       // if machinePoint value equals to 3 then run endGameMessage('The Machine')
       if (roundCount === 5 && userPoint > machinePoint) {
@@ -142,7 +139,7 @@ function game() {
         // assign 5 to i so the loop can stop
         i = 5;
       }
-    } else { // if the input does not match null or any hands items, alert messgae and subtract 1 from i so the this loop is repeated
+    } else { // if the input does not match null or any hands items, alert message and subtract 1 from i so the this loop is repeated
       alert("That's not a hand! Please type-in again");
       i -= 1;
     }
