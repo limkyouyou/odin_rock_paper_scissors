@@ -141,9 +141,13 @@ function game() {
       // give a point to the winner and alert end of round message
       givePoint();
       
-      // the user click okay
       // if roundCount is < 5 then prompt input box again, repeat
-      
+      // if roundCount value equals 5 and userPoint value is bigger than machinePoint then run endGameMessage('You')
+      // if roundCount value equals 5 and machinePoint value is bigger than userPoint then run run endGameMessage('The machine')
+      // if roundCount value equals 5 and machinePoint value equals to userPoint then run 'There is no winner for this game'
+      // , 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
+      // if userPoint value equals to 3 then run endGameMessage('You')
+      // if machinePoint value equals to 3 then run endGameMessage('The Machine')
       if (roundCount === 5 && userPoint > machinePoint) {
         endGameMessage('You');
       } else if (roundCount === 5 && userPoint < machinePoint) {
@@ -168,30 +172,6 @@ function game() {
   }
 }
 
-// create end of game message function
-function endgame() {
-  // if roundCount value equals 5 and userPoint value is bigger than machinePoint then run endGameMessage('You')
-  // if roundCount value equals 5 and machinePoint value is bigger than userPoint then run run endGameMessage('The machine')
-  // if roundCount value equals 5 and machinePoint value equals to userPoint then run 'There is no winner for this game'
-  // , 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
-  // if userPoint value equals to 3 then run endGameMessage('You')
-  // if machinePoint value equals to 3 then run endGameMessage('The Machine')
-  if (roundCount === 5 && userPoint > machinePoint) {
-    endGameMessage('You');
-  } else if (roundCount === 5 && userPoint < machinePoint) {
-    endGameMessage('The machine');
-  } else if (roundCount === 5 && userPoint === machinePoint) {
-    endGameDrawMessage();
-  } else if (userPoint === 3 && roundCount !== 5) {
-    endGameMessage('You');
-    // assign 5 to i so the loop can stop
-    i = 5;
-  } else if (machinePoint === 3 && roundCount !== 5) {
-    endGameMessage('The machine');
-    // assign 5 to i so the loop can stop
-    i = 5;
-  }
-}
 // create endGameMessage function with parameters (winner) 
 // and confirm message 'The winner of the game is $winner !', 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
 function endGameMessage(winner) {
@@ -207,13 +187,3 @@ function endGameDrawMessage() {
     game() // if confirmation is true then run game()
   }
 }
-// if userPoint value equals to 3 then run endGameMessage('You', userPoint, machinePoint)
-// if machinePoint value equals to 3 then run endGameMessage('The Machine', userPoint, machinePoint)
-// if roundCount value equals 5 and userPoint value is bigger than machinePoint then run endGameMessage('You', userPoint, machinePoint)
-// if roundCount value equals 5 and machinePoint value is bigger than userPoint then run run endGameMessage('The machine', userPoint, machinePoint)
-// if roundCount value equals 5 and machinePoint value equals to userPoint then run 'There is no winner for this game'
-// , 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
-
-// the user press okay to play again
-// all variables assign initial value
-// prompt input box
