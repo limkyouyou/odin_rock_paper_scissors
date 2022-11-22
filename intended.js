@@ -22,24 +22,20 @@ function getComputerChoice() {
 
 // Create playRound function with two parameters, make playerSelection case-insensitive by transforming all its input to lower case, add player score and computer score
 function playRound(playerSelection, computerSelection) {
-  if (playerSelection === "rock" && computerSelection === "paper") {
+  if (
+    (playerSelection.toLowerCase() === "rock" && computerSelection === "paper") ||
+    (playerSelection.toLowerCase() === "paper" && computerSelection === "scissors") ||
+    (playerSelection.toLowerCase() === "scissors" && computerSelection === "rock")
+    ) {
     computerScore += 1;
-    return "You Lose! Paper beats Rock";
-  } else if (playerSelection.toLowerCase() === "paper" && computerSelection === "scissors") {
-    computerScore += 1;
-    return "You Lose! Scissors beats Paper";
-  } else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "rock") {
-    computerScore += 1;
-    return "You Lose! Rock beats Scissors";
-  } else if (playerSelection.toLowerCase() === "paper" && computerSelection === "rock") {
+    return `You Lose! ${computerSelection} beats ${playerSelection.toLowerCase()}`;
+  } else if (
+    (playerSelection.toLowerCase() === "paper" && computerSelection === "rock") || 
+    (playerSelection.toLowerCase() === "scissors" && computerSelection === "paper") ||
+    (playerSelection.toLowerCase() === "rock" && computerSelection === "scissors")
+    ) {
     playerScore += 1;
-    return "You Win! Paper beats Rock";
-  } else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "paper") {
-    playerScore += 1;
-    return "You Win! Scissors beats Paper";
-  } else if (playerSelection.toLowerCase() === "rock" && computerSelection === "scissors") {
-    playerScore += 1;
-    return "You Win! Rock beats Scissors";
+    return `You Win! ${playerSelection.toLowerCase()} beats ${computerSelection}`;
   } else if (playerSelection.toLowerCase() === computerSelection) {
     return "You draw this round!"
   }
