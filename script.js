@@ -49,6 +49,11 @@ function whichHand(hand) {
   }
 }
 
+// create function that capitalize the first letter
+function firstCap(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 // create game function
 function game() {
   // create i vairable for loop here to that it can be modified
@@ -120,7 +125,7 @@ function game() {
         machinePoint += 1;
         endRound();
       } else if (winningHand === 4) {
-        alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou draw the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
+        alert(`You: ${firstCap(hands[userHand])}\nThe machine: ${firstCap(hands[machineHand])}\n\nYou draw the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
       }
 
       // if roundCount value equals 5 and userPoint value is bigger than machinePoint then run endGameMessage('You')
@@ -154,13 +159,13 @@ function game() {
 
 // create end of round function
 function endRound() {
-  alert(`You: ${hands[userHand]}\nThe machine: ${hands[machineHand]}\n\nYou won the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
+  alert(`You: ${firstCap(hands[userHand])}\nThe machine: ${firstCap(hands[machineHand])}\n\nYou won the ${round[roundCount - 1]} round!\n\nScore\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nClick OK to move on to the next round.`)
 }
 
 // create endGameMessage function with parameters (winner) 
 // and confirm message 'The winner of the game is $winner !', 'The final score is You: $userPoint, The machine: $machinePoint', 'Do you want to play again?'
 function endGameMessage(winner) {
-  confirmation = confirm(`The winner of the game is ${winner}!\n\nThe final score is\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nDo you want to play again?`);
+  confirmation = confirm(`The winner of the game is ${firstCap(winner)}!\n\nThe final score is\nYou: ${userPoint}\nThe machine: ${machinePoint}\n\nDo you want to play again?`);
   if (confirmation) {
     game() // if confirmation is true then run game()
   }
