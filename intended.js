@@ -46,11 +46,19 @@ function game() {
   roundCount = 0;
   playerScore = 0;
   computerScore = 0;
-  for (let i = 0; i < 5; i++) { // loop for 5 rounds
+  let i = 0;
+  for (i = 0; i < 5; i++) { // loop for 5 rounds
     roundCount += 1; // add one to round every loop
     playerChoice = prompt("This is the intended version. Type-in rock, paper, or scissors") // prompt player to choose a hand
-    console.log(playRound(playerChoice, getComputerChoice())); // run playRound function with playerChoice and getComputerChoice function as a parameter then console out
-
+    if (playerChoice === null) {
+      alert ("Exiting the game")
+      return "Exited the game";
+    } else if(playerChoice.toLowerCase() === 'rock' || playerChoice.toLowerCase() === 'paper' || playerChoice.toLowerCase() === 'scissors') {
+      console.log(playRound(playerChoice, getComputerChoice())); // run playRound function with playerChoice and getComputerChoice function as a parameter then console out
+    } else {
+      alert("That's not a hand. Please type in rock, paper, or scissors")
+      i -= 1;
+    }
   }
   if (computerScore > playerScore) { // return winner or loser or draw depending on the score
     return `You are the Loser! Your score is ${playerScore} and The computer's score is ${computerScore}`;
