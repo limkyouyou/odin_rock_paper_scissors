@@ -43,6 +43,9 @@ function playRound(playerSelection, computerSelection) {
 
 // Create game function, run playRound function for 5 times, keep score and report a winner or loser at the end
 function game() {
+  roundCount = 0;
+  playerScore = 0;
+  computerScore = 0;
   for (let i = 0; i < 5; i++) { // loop for 5 rounds
     roundCount += 1; // add one to round every loop
     playerChoice = prompt("This is the intended version. Type-in rock, paper, or scissors") // prompt player to choose a hand
@@ -58,4 +61,13 @@ function game() {
   }
 }
 
-console.log(game()); // execute game function and log out its return
+const divPlay = document.querySelector('#playContainer');
+const playBtn = document.createElement('button');
+
+playBtn.textContent = "PLAY"
+
+playBtn.addEventListener('click', () => {
+  console.log(game());
+});
+
+divPlay.appendChild(playBtn);
